@@ -1,0 +1,9 @@
+# Python
+.idea/*
+/**/__pycache__/**
+**/.env
+
+# Visual Studio
+**/.vs
+**/bin
+**/obj
