@@ -1,0 +1,40 @@
+@SampleAPI_HostAddress = http://localhost:5223
+
+GET {{SampleAPI_HostAddress}}/api/products/
+
+###
+
+GET {{SampleAPI_HostAddress}}/api/products/4
+
+###
+
+GET {{SampleAPI_HostAddress}}/api/products/featured
+
+###
+
+POST {{SampleAPI_HostAddress}}/api/products/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Portable SSD 1TB",
+    "category": "Storage",
+    "price": 499.90
+}
+
+###
+
+PUT {{SampleAPI_HostAddress}}/api/products/4
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Bluetooth Speaker Mini 2",
+    "category": "Audio",
+    "price": 229.00
+}
+
+###
+
+DELETE {{SampleAPI_HostAddress}}/api/products/4
+Accept: application/json
