@@ -1,0 +1,6 @@
+@MiddlewareSample_HostAddress = http://localhost:5007
+
+GET {{MiddlewareSample_HostAddress}}/
+Accept: application/json
+
+###
