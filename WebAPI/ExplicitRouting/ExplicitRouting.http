@@ -1,0 +1,46 @@
+@ExplicitRouting_HostAddress = http://localhost:5263
+
+GET {{ExplicitRouting_HostAddress}}/users/
+Accept: application/json
+
+###
+
+POST {{ExplicitRouting_HostAddress}}/users/
+Accept: application/json
+
+###
+
+PUT {{ExplicitRouting_HostAddress}}/users/25
+Accept: application/json
+
+###
+
+PUT {{ExplicitRouting_HostAddress}}/users/-5
+Accept: application/json
+
+###
+
+DELETE {{ExplicitRouting_HostAddress}}/users/32
+Accept: application/json
+
+###
+
+GET {{ExplicitRouting_HostAddress}}/reports
+Accept: application/json
+
+###
+
+GET {{ExplicitRouting_HostAddress}}/reports/2025
+Accept: application/json
+
+###
+
+GET {{ExplicitRouting_HostAddress}}/files/images/group/my_image5.png
+Accept: application/json
+
+###
+
+GET {{ExplicitRouting_HostAddress}}/search?word=dotnet&page=5
+Accept: application/json
+
+###
