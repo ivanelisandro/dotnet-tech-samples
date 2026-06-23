@@ -1,0 +1,34 @@
+@SecuringMiddlewareSample_HostAddress = http://localhost:5294
+
+# Mock HTTPS Requirement Test
+GET {{SecuringMiddlewareSample_HostAddress}}/
+Accept: application/json
+
+###
+
+# Authenticated Request Test
+GET {{SecuringMiddlewareSample_HostAddress}}/?protected=true&userlogged=true
+Accept: application/json
+
+###
+
+# Unauthorized Requests Test
+GET {{SecuringMiddlewareSample_HostAddress}}/admin-panel?protected=true
+Accept: application/json
+
+###
+
+# Request Data Test
+GET {{SecuringMiddlewareSample_HostAddress}}/?protected=true&search=<script>
+Accept: application/json
+
+###
+
+# Early Authentication Test
+GET {{SecuringMiddlewareSample_HostAddress}}/?protected=true
+Accept: application/json
+
+###
+
+# Security Incident Recording Test
+# Re-execute previous requests and verify console output
