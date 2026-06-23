@@ -1,0 +1,7 @@
+@ServiceSample_HostAddress = http://localhost:5018
+
+# Middleware Lifetime Test: Verify logs after accessing home.
+GET {{ServiceSample_HostAddress}}/
+Accept: application/json
+
+###
