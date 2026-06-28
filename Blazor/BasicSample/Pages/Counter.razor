@@ -1,0 +1,33 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementUnit">Increment by 1</button>
+<button class="btn btn-primary" @onclick="IncrementTen">Increment by 10</button>
+<button class="btn btn-primary" @onclick="IncrementDecimal">Increment by 0.1</button>
+
+@code {
+    private decimal currentCount = 0;
+
+    private void IncrementUnit()
+    {
+        currentCount++;
+        Console.WriteLine("Incremented by 1.");
+    }
+
+    private void IncrementTen()
+    {
+        currentCount += 10;
+        Console.WriteLine("Incremented by 10.");
+    }
+
+    private void IncrementDecimal()
+    {
+        currentCount += 0.1m;
+        Console.WriteLine("Incremented by 0.1.");
+    }
+}
