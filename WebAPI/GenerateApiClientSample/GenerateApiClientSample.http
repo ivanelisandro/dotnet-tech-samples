@@ -1,0 +1,6 @@
+@GenerateApiClientSample_HostAddress = http://localhost:5063
+
+GET {{GenerateApiClientSample_HostAddress}}/api/User
+Accept: application/json
+
+###
