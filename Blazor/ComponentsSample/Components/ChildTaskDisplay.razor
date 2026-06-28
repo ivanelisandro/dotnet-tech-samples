@@ -1,0 +1,25 @@
+﻿<div>
+    <p role="status">@TaskName</p>
+    <button class="btn btn-primary" @onclick="MarkAsComplete">Mark as Complete</button>
+</div>
+
+@code {
+    [Parameter]
+    public string TaskName { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<string> OnTaskCompleted { get; set; }
+
+    /// <summary>
+    /// Reports back to a parent component when a task is completed.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task MarkAsComplete()
+    {
+        // Log HashCode to analyze how blazor is using instances.
+        // With this I can understand if there is one instance for each component or one instance being reused.
+        Console.WriteLine(this.GetHashCode());
+
+        await OnTaskCompleted.InvokeAsync(TaskName);
+    }
+}

@@ -1,0 +1,57 @@
+﻿@page "/tasks"
+@rendermode InteractiveServer
+
+<h3>Task Manager</h3>
+
+@foreach (var task in TaskList)
+{
+    <ChildTaskDisplay TaskName="@task" OnTaskCompleted="HandleTaskCompleted" />
+}
+
+@code {
+    private List<string> TaskList =
+    [
+        "Task 1",
+        "Task 2",
+        "Task 3"
+    ];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Using this to understand when initialization happens.
+        Console.WriteLine("Initialized");
+        this.LogTasks();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        // Using this to understand when rendering is called and how many times it might be triggered.
+        Console.WriteLine("Rendered");
+        this.LogTasks();
+    }
+
+    /// <summary>
+    /// Handles operations with the list of tasks for a task that has been reported as completed.
+    /// </summary>
+    /// <param name="completedTask">The completed task.</param>
+    private void HandleTaskCompleted(string completedTask)
+    {
+        TaskList.Remove(completedTask);
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Logs the current task list to the console for analysis.
+    /// </summary>
+    private void LogTasks()
+    {
+        foreach (string task in TaskList)
+        {
+            Console.WriteLine(task);
+        }
+    }
+}
