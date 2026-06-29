@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@using BasicSample.Components
 
 <PageTitle>Counter</PageTitle>
 
@@ -6,28 +7,20 @@
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementUnit">Increment by 1</button>
-<button class="btn btn-primary" @onclick="IncrementTen">Increment by 10</button>
-<button class="btn btn-primary" @onclick="IncrementDecimal">Increment by 0.1</button>
+<IncrementButton IncrementValue="1" OnIncremented="HandleIncrement" />
+<IncrementButton IncrementValue="10" OnIncremented="HandleIncrement" />
+<IncrementButton IncrementValue="0.1m" OnIncremented="HandleIncrement" />
 
 @code {
     private decimal currentCount = 0;
 
-    private void IncrementUnit()
+    /// <summary>
+    /// Handles operations with the counter for an increment reported.
+    /// </summary>
+    /// <param name="incrementValue">The value to increase the counter.</param>
+    private void HandleIncrement(decimal incrementValue)
     {
-        currentCount++;
-        Console.WriteLine("Incremented by 1.");
-    }
-
-    private void IncrementTen()
-    {
-        currentCount += 10;
-        Console.WriteLine("Incremented by 10.");
-    }
-
-    private void IncrementDecimal()
-    {
-        currentCount += 0.1m;
-        Console.WriteLine("Incremented by 0.1.");
+        currentCount += incrementValue;
+        StateHasChanged();
     }
 }

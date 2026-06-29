@@ -1,0 +1,19 @@
+﻿<button class="btn btn-primary" @onclick="Increment">Increment by @IncrementValue</button>
+
+@code {
+    [Parameter]
+    public decimal IncrementValue { get; set; } = 0;
+
+    [Parameter]
+    public EventCallback<decimal> OnIncremented { get; set; }
+
+    /// <summary>
+    /// Reports back to a parent component when the value must be incremented.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task Increment()
+    {
+        await OnIncremented.InvokeAsync(IncrementValue);
+        Console.WriteLine($"Incremented by {IncrementValue}.");
+    }
+}
