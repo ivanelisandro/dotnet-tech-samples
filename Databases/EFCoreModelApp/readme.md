@@ -9,7 +9,7 @@ Below I tried to describe configuration that I did when setting up the project, 
 1. EF Core installed with the command:
 
     ```bash
-    dotnet tool install --global dotnet-ef --version 8.0.27
+    dotnet tool install --global dotnet-ef --version 9.0.16
     ```
 
 2. External packages:
