@@ -30,7 +30,7 @@ internal class TestingDbAccess
     /// </summary>
     internal void ShowAllEmployees()
     {
-        using var context = this._dbFactory.Create(this._configuration);
+        using AppDbContext context = this._dbFactory.Create(this._configuration);
         var allEmployees = context.Employees.Include(e => e.Department).ToList();
 
         Formatting.WriteHeader("All Employees:");
@@ -47,7 +47,7 @@ internal class TestingDbAccess
     /// <param name="department">The department to filter.</param>
     internal void ShowEmployeesByDepartment(string department)
     {
-        using var context = this._dbFactory.Create(this._configuration);
+        using AppDbContext context = this._dbFactory.Create(this._configuration);
         var departmentEmployees = context.Employees
             .Include(e => e.Department)
             .Where(e => e.Department.Name == department)
@@ -69,7 +69,7 @@ internal class TestingDbAccess
     /// <param name="departmentId">The department for the employee.</param>
     internal void AddEmployee(string firstName, string lastName, int departmentId)
     {
-        using var context = this._dbFactory.Create(this._configuration);
+        using AppDbContext context = this._dbFactory.Create(this._configuration);
         var newEmployee = new Employee(firstName, lastName, DateTime.Now, departmentId);
         context.Employees.Add(newEmployee);
         context.SaveChanges();
@@ -83,7 +83,7 @@ internal class TestingDbAccess
     /// <param name="id">The unique ID of the employee to remove.</param>
     internal void RemoveEmployee(int id)
     {
-        using var context = this._dbFactory.Create(this._configuration);
+        using AppDbContext context = this._dbFactory.Create(this._configuration);
         var employee = context.Employees.Find(id);
 
         if (employee is null)
