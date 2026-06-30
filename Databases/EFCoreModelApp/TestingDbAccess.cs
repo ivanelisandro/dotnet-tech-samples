@@ -84,7 +84,7 @@ internal class TestingDbAccess
     internal void RemoveEmployee(int id)
     {
         using var context = this._dbFactory.Create(this._configuration);
-        var employee = context.Employees.FirstOrDefault(e => e.EmployeeID == id);
+        var employee = context.Employees.Find(id);
 
         if (employee is null)
         {
