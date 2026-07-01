@@ -1,0 +1,14 @@
+﻿@using ComponentsTechniquesSample.Components
+@page "/cascade"
+
+<PageTitle>@title</PageTitle>
+
+<h1>@title</h1>
+
+<RenderFragmentComponent>
+    <ThemeColorComponent />
+</RenderFragmentComponent>
+
+@code {
+    private string title = "Cascading Parameter Demo";
+}

@@ -1,0 +1,18 @@
+﻿<button class="btn btn-primary" @onclick="HandleClick">@Text</button>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    /// <summary>
+    /// Handles the click in the button.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task HandleClick()
+    {
+        await OnClick.InvokeAsync();
+    }
+}

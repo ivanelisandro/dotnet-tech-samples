@@ -1,0 +1,21 @@
+﻿<div style="padding:10px; margin:10px 0 0 0; border:1px solid black; border-radius:4px">
+    <h6>Child: notifies parent</h6>
+    <StandardAppButton OnClick="NotifyParent" Text="Notify Parent" />
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnNotifyParent { get; set; }
+
+    /// <summary>
+    /// Notifies parent component that a change is being reported by the child.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task NotifyParent()
+    {
+        if (OnNotifyParent.HasDelegate)
+        {
+            await OnNotifyParent.InvokeAsync();
+        }
+    }
+}

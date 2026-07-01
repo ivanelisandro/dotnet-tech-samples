@@ -1,0 +1,14 @@
+﻿@using ComponentsTechniquesSample.Components
+@page "/injection"
+
+<PageTitle>@title</PageTitle>
+
+<h1>@title</h1>
+
+<RenderFragmentComponent>
+    <ServiceComponent />
+</RenderFragmentComponent>
+
+@code {
+    private string title = "Dependency Injection Demo";
+}

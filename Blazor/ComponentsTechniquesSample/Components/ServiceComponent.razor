@@ -1,0 +1,14 @@
+﻿@using ComponentsTechniquesSample.Services
+@inject DataService DataService
+
+<h3>List from service:</h3>
+
+<ul>
+    @foreach (var item in DataService.GetData())
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+}

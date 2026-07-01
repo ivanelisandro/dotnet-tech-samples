@@ -1,0 +1,14 @@
+﻿@using ComponentsTechniquesSample.Components
+@page "/reference"
+
+<PageTitle>@title</PageTitle>
+
+<h1>@title</h1>
+
+<RenderFragmentComponent>
+    <ReferenceComponent />
+</RenderFragmentComponent>
+
+@code {
+    private string title = "Component Referencing Demo";
+}

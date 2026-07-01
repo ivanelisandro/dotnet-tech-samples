@@ -1,0 +1,38 @@
+﻿<div style="padding:10px; border:1px solid black; border-radius:4px">
+    <h5>Parent: contains Child reference</h5>
+    <p>Status: @Status</p>
+    <StandardAppButton OnClick="Reset" Text="Reset Status" />
+
+    <ChildComponent @ref="childComponent" OnNotifyParent="HandleNotification" />
+</div>
+
+@code {
+    private ChildComponent childComponent;
+
+    [Parameter]
+    public string Status { get; set; }
+
+    /// <summary>
+    /// Updates status when the component is initialized.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        Status = "Initialized";
+    }
+
+    /// <summary>
+    /// Handles notifications from the child component.
+    /// </summary>
+    private void HandleNotification()
+    {
+        Status = "Notification received from child component";
+    }
+
+    /// <summary>
+    /// Resets the status of the component.
+    /// </summary>
+    private void Reset()
+    {
+        Status = "Reset by parent";
+    }
+}
