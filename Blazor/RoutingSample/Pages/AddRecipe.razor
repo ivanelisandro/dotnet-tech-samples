@@ -1,0 +1,45 @@
+﻿@page "/add-recipe"
+@using RoutingSample.Components
+@using RoutingSample.Model
+@using RoutingSample.Services
+@inject RecipesService RecipesService
+@inject NavigationManager NavManager
+
+<h3>Add Recipe</h3>
+
+<EditForm Model="@Recipe"
+          OnValidSubmit="SubmitRecipe">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="recipeName">Recipe Name:</label>
+        <br />
+        <InputText id="recipeName"
+                   placeholder="Enter recipe name..."
+                   @bind-Value="Recipe.Name"/>
+    </div>
+    <div>
+        <label for="recipeDescription">Recipe Description:</label>
+        <br />
+        <InputTextArea id="recipeDescription"
+                       placeholder="Enter a description..."
+                       @bind-Value="Recipe.Description" />
+    </div>
+    <button class="btn btn-primary" type="submit">Add Recipe</button>
+</EditForm>
+
+
+@code {
+    [SupplyParameterFromForm]
+    private RecipeDto Recipe { get; set; } = new RecipeDto();
+
+    /// <summary>
+    /// Submits the values for creating a recipe.
+    /// </summary>
+    private void SubmitRecipe()
+    {
+        RecipesService.Add(Recipe);
+        NavManager.NavigateTo("/recipes");
+    }
+}

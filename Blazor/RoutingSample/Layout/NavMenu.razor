@@ -1,0 +1,89 @@
+﻿@using RoutingSample.Services
+@inject RecipesService RecipesService
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">RoutingSample</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="recipes">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Recipes
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" @onclick="ToggleRecipesSubMenu">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Recipe Items
+            </NavLink>
+        </div>
+        @if (!collapseRecipesSubMenu)
+        {
+            @foreach (var (id, name) in RecipesService.GetAllStub())
+            {
+
+                <li class="nav-item px-3 sub-item">
+                    <NavLink class="nav-link"
+                             href=@($"/recipes/{id}")
+                             title="@name" >
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>
+                        <span class="nav-text-truncate">@name</span>
+                    </NavLink>
+                </li>
+                Console.WriteLine($"Done {id}");
+            }
+        }
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="add-recipe">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Add Recipe
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool collapseRecipesSubMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    /// <summary>
+    /// Defines behavior that depend on component initialization.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        // Sets up monitoring changes on the recipes list shown in the submenu.
+        RecipesService.OnChange += StateHasChanged;
+    }
+
+    /// <summary>
+    /// Disposes resources on component destruction.
+    /// </summary>
+    public void Dispose()
+    {
+        RecipesService.OnChange -= StateHasChanged;
+    }
+
+    /// <summary>
+    /// Toggles (shows or hides) recipe items submenu.
+    /// </summary>
+    private void ToggleRecipesSubMenu()
+    {
+        collapseRecipesSubMenu = !collapseRecipesSubMenu;
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,13 @@
+﻿@page "/recipes"
+@using RoutingSample.Components
+@using RoutingSample.Model
+@using RoutingSample.Services
+@inject RecipesService RecipesService
+
+<PageTitle>My Recipes</PageTitle>
+<h1>My Recipes</h1>
+<RecipesList Recipes="@RecipesService.GetAllStub()" />
+<NavLink class="btn btn-primary" href="/add-recipe">Add Recipe</NavLink>
+
+@code {
+}

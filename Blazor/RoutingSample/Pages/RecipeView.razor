@@ -1,0 +1,24 @@
+﻿@page "/recipes/{id:int}"
+@using RoutingSample.Model
+@using RoutingSample.Services
+@inject RecipesService RecipesService
+
+<h3>@recipe?.Name</h3>
+<p>@recipe?.Description</p>
+
+<NavLink class="btn btn-primary" href="/recipes">Return to Recipes</NavLink>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Recipe? recipe;
+
+    /// <summary>
+    /// Updates required objects when parameters have been set for the component.
+    /// </summary>
+    protected override void OnParametersSet()
+    {
+        recipe = RecipesService.Get(this.Id);
+    }
+}
