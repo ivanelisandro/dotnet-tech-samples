@@ -1,4 +1,4 @@
-﻿using RoutingSample.Model;
+﻿using RoutingSample.Models;
 
 namespace RoutingSample.Services;
 
@@ -66,8 +66,11 @@ public class RecipesService
         int id = recipes.Keys.Max() + 1;
         var recipe = new Recipe(id, recipeToAdd.Name, recipeToAdd.Description);
         recipes.Add(id, recipe);
-        NotifyStateChanged();
+        NotifyChanged();
     }
 
-    private void NotifyStateChanged() => OnChange?.Invoke();
+    /// <summary>
+    /// Notifies consumers that the state of the collection of recipes has changed.
+    /// </summary>
+    private void NotifyChanged() => OnChange?.Invoke();
 }
