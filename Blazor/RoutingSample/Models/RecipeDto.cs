@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RoutingSample.Model;
+namespace RoutingSample.Models;
 
 /// <summary>
 /// Represents recipe information entered by the user, with input validation.

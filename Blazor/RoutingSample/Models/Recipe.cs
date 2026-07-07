@@ -1,4 +1,4 @@
-﻿namespace RoutingSample.Model;
+﻿namespace RoutingSample.Models;
 
 /// <summary>
 /// Represents recipe information as stored by the application.
