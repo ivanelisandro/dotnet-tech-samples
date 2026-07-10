@@ -1,0 +1,66 @@
+﻿@page "/add-feedback"
+@using FormsSample.Models
+@using FormsSample.Services
+@inject FeedbacksService FeedbacksService
+@inject NavigationManager NavManager
+
+<h1>Add Feedback</h1>
+
+<EditForm Model="@Feedback"
+          OnValidSubmit="SubmitFeedback">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="name">Name:</label>
+        <br />
+        <InputText id="name"
+                   placeholder="Enter your name..."
+                   @bind-Value="Feedback.Name"
+                   class="form-control" />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <br />
+        <InputText id="email"
+                   placeholder="Enter your email..."
+                   @bind-Value="Feedback.Email"
+                   class="form-control" />
+    </div>
+    <div>
+        <label for="comment">Comment:</label>
+        <br />
+        <InputTextArea id="comment"
+                       placeholder="Enter your feedback comment..."
+                       @bind-Value="Feedback.Comment"
+                       class="form-control" />
+    </div>
+    <button class="btn btn-primary" type="submit">Add Feedback</button>
+</EditForm>
+
+@if (isSubmitted)
+{
+    <p>Thank you for your feedback!</p>
+}
+
+<div style="padding:1vh 0">
+    <NavLink class="btn btn-primary" href="/feedbacks">Return to Feedbacks</NavLink>
+</div>
+
+@code {
+    private bool isSubmitted = false;
+
+    [SupplyParameterFromForm]
+    private Feedback Feedback { get; set; } = new();
+
+    /// <summary>
+    /// Submits the feedback value.
+    /// </summary>
+    private void SubmitFeedback()
+    {
+        FeedbacksService.Add(Feedback);
+        Feedback = new Feedback();
+        isSubmitted = true;
+    }
+}

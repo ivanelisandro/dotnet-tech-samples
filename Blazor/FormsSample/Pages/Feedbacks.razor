@@ -1,0 +1,31 @@
+﻿@page "/feedbacks"
+@using FormsSample.Services;
+@inject FeedbacksService FeedbacksService
+
+<PageTitle>@Title</PageTitle>
+
+<h1>@Title</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="col-name">Name</th>
+            <th class="col-email">Email</th>
+            <th class="col-comment">Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in FeedbacksService.GetAll())
+        {
+            <tr>
+                <td class="col-name">@feedback.Name</td>
+                <td class="col-email">@feedback.Email</td>
+                <td class="col-comment">@feedback.Comment</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private const string Title = "Submitted Feedbacks";
+}

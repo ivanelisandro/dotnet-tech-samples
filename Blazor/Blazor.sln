@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37411.7 d17.14
+VisualStudioVersion = 17.14.37411.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSample", "BasicSample\BasicSample.csproj", "{E1AAB9C2-AF17-45EC-9D76-B25F73BB8854}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsTechniquesSample", "ComponentsTechniquesSample\ComponentsTechniquesSample.csproj", "{6FC606DA-868F-4D7B-B99C-E40805BE9F50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutingSample", "RoutingSample\RoutingSample.csproj", "{6A2BCCE9-0111-4EF5-A3BB-DD0FDCE73AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsSample", "FormsSample\FormsSample.csproj", "{5C463021-AE59-443B-99B1-FF873A4E7C7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6A2BCCE9-0111-4EF5-A3BB-DD0FDCE73AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A2BCCE9-0111-4EF5-A3BB-DD0FDCE73AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A2BCCE9-0111-4EF5-A3BB-DD0FDCE73AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
