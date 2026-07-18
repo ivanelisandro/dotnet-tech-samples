@@ -1,0 +1,42 @@
+﻿@using ServerAppSample.Client
+@using ServerAppSample.Models
+
+<li class="chat-message @GetMessageClassification(@Message) sender-color-@GetSenderColorIndex(@Message.User)">
+    <div class="sender">
+        @Message.User
+     </div>
+
+    <div class="bubble">
+        @Message.Text
+        <div class="timestamp">@Message.TimeText</div>
+    </div>
+</li>
+
+@code {
+    [CascadingParameter]
+    public UserMapping UserMapping { get; set; } = default!;
+
+    [Parameter]
+    public ChatMessage Message { get; set; } = default!;
+
+    /// <summary>
+    /// Gets the index of the sender of a message.
+    /// Used to define the color used in the user name on the UI.
+    /// </summary>
+    /// <param name="sender">The username of the sender of the message.</param>
+    /// <returns>An index representing the sender.</returns>
+    private int GetSenderColorIndex(string sender)
+    {
+        return UserMapping.GetSenderIndex(sender);
+    }
+
+    /// <summary>
+    /// Gets the messsage classification to define message formatting.
+    /// </summary>
+    /// <param name="message">The message to analyze the sender.</param>
+    /// <returns>A value to compose the class of the UI element.</returns>
+    private string GetMessageClassification(ChatMessage message)
+    {
+        return UserMapping.IsMe(message.User) ? "mine" : "other";
+    }
+}

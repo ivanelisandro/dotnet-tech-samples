@@ -1,0 +1,18 @@
+﻿.user-area {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0.5vh 0;
+}
+
+    .user-area input {
+        flex: 1;
+    }
+
+    .user-area button {
+        flex-shrink: 0;
+    }
+
+.user-area-item {
+    margin: 0 0 0 0.5vw;
+}

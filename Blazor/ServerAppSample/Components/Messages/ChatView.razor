@@ -1,0 +1,108 @@
+﻿@rendermode InteractiveServer
+@implements IDisposable
+@using Microsoft.AspNetCore.SignalR.Client
+@using ServerAppSample.Client
+@using ServerAppSample.Components.Messages
+@using ServerAppSample.Models
+@inject NavigationManager Navigation
+@inject MessagesState MessagesState
+@inject NotificationHubClient HubClient
+
+@if (MessagesState is null || userState is null)
+{
+    <p>Loading chat…</p>
+    return;
+}
+
+<CascadingValue Value="@MessagesState">
+    <CascadingValue Value="@userState">
+        <SetUserArea />
+
+        <div class="chat-messages" @ref="messagesContainer">
+            @if (userState.IsUserActive == true)
+            {
+                <MessagesList />
+            }
+            else
+            {
+                <p>Set your user name and lock the user to start chatting!</p>
+            }
+        </div>
+
+        <InputMessage />
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private ElementReference messagesContainer;
+    private UserState userState = new();
+
+    private bool _shouldScroll;
+    private IJSObjectReference? _module;
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+
+    /// <summary>
+    /// Disposes resources when discarding the component.
+    /// </summary>
+    public void Dispose()
+    {
+        userState.OnChange -= NotifyState;
+        MessagesState.OnChange -= NotifyState;
+    }
+
+    /// <summary>
+    /// Initializes required state management.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await HubClient.StartAsync();
+
+        userState.OnChange += NotifyState;
+        MessagesState.OnChange += NotifyState;
+    }
+
+    /// <summary>
+    /// Process operations required after a render pass.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/chat.js");
+        }
+
+        await ScrollMessagesAsync();
+    }
+
+    /// <summary>
+    /// Scrolls to the bottom of the messages container asynchronously.
+    /// Should be triggered when receiving messages updates only.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task ScrollMessagesAsync()
+    {
+        if (_module is null)
+        {
+            return;
+        }
+
+        if (_shouldScroll)
+        {
+            _shouldScroll = false;
+            await _module.InvokeVoidAsync("scrollToBottom", messagesContainer);
+        }
+    }
+
+    /// <summary>
+    /// Reports when UI state has changed to be re-rendered.
+    /// </summary>
+    private void NotifyState()
+    {
+        _shouldScroll = true;
+        InvokeAsync(StateHasChanged);
+    }
+}

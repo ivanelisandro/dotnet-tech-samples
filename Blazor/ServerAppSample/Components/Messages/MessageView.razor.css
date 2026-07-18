@@ -1,0 +1,97 @@
+﻿.chat-message {
+    list-style: none;
+    margin: 6px 0;
+    max-width: 70%; /* prevents full width */
+    display: flex;
+    flex-direction: column;
+}
+
+    .chat-message.mine {
+        align-self: flex-end; /* push right */
+        text-align: right;
+    }
+
+    .chat-message.other {
+        align-self: flex-start; /* push left */
+        text-align: left;
+    }
+
+.bubble {
+    position: relative;
+    padding: 10px 14px 18px 14px; /* bottom padding for timestamp */
+    border-radius: 12px;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.mine .bubble {
+    background: #dcf8c6;
+}
+
+.other .bubble {
+    background: #ffffff;
+    border: 1px solid #ddd;
+}
+
+.sender {
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.timestamp {
+    font-size: 0.70rem;
+    color: #777;
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+}
+
+/* 12 distinct colors (indexes 0 to 11) */
+.sender-color-0 .sender {
+    color: #e91e63;
+}
+
+.sender-color-1 .sender {
+    color: #9c27b0;
+}
+
+.sender-color-2 .sender {
+    color: #3f51b5;
+}
+
+.sender-color-3 .sender {
+    color: #2196f3;
+}
+
+.sender-color-4 .sender {
+    color: #03a9f4;
+}
+
+.sender-color-5 .sender {
+    color: #009688;
+}
+
+.sender-color-6 .sender {
+    color: #4caf50;
+}
+
+.sender-color-7 .sender {
+    color: #8bc34a;
+}
+
+.sender-color-8 .sender {
+    color: #ff9800;
+}
+
+.sender-color-9 .sender {
+    color: #ff5722;
+}
+
+.sender-color-10 .sender {
+    color: #795548;
+}
+
+.sender-color-11 .sender {
+    color: #607d8b;
+}

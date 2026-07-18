@@ -1,0 +1,28 @@
+﻿.message-area {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0.5vh 0;
+    max-width: 50%;
+}
+
+.message-area-item {
+    margin: 0 0 0 0.5vw;
+}
+
+/* The message list container */
+.chat-messages {
+    flex: 1;          /* fills remaining vertical space */
+    overflow-y: auto; /* scrolls independently */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message input configuration to stay at the bottom */
+.chat-input-area {
+    flex-shrink: 0; /* prevents collapsing */
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}

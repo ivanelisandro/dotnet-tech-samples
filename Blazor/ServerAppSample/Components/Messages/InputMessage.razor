@@ -1,0 +1,77 @@
+﻿@rendermode InteractiveServer
+@using ServerAppSample.Client
+@using ServerAppSample.Components.Messages
+@using ServerAppSample.Models
+@inject NotificationHubClient HubClient
+
+<div class="message-area">
+    <input @bind-value="message"
+           placeholder="Enter a message..."
+           @onkeyup="HandleKeyUp"
+           disabled="@(!(Status?.IsUserActive == true))"
+           @ref="messageElement" />
+
+    <button class="btn @SendCssClass message-area-item"
+            @onclick="HandleSendAsync"
+            disabled="@(!(Status?.IsUserActive == true))">
+        Send
+    </button>
+</div>
+
+@code {
+    private string message = default!;
+    private ElementReference messageElement;
+
+    private string? SendCssClass => Status.IsUserActive ?
+        StylesIdentifiers.PrimaryClass :
+        StylesIdentifiers.DisabledClass;
+
+    [CascadingParameter]
+    public UserState Status { get; set; } = default!;
+
+    /// <summary>
+    /// Disposes resources when discarding the component.
+    /// </summary>
+    public void Dispose()
+    {
+        Status.OnChange -= StateHasChanged;
+    }
+
+    /// <summary>
+    /// Initializes required state management.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        Status.OnChange += StateHasChanged;
+    }
+
+    /// <summary>
+    /// Handles key up event to send message.
+    /// </summary>
+    /// <param name="e">The arguments for the keyboard event.</param>
+    private async void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await HandleSendAsync();
+        }
+    }
+
+    /// <summary>
+    /// Sends a message asynchronously.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task HandleSendAsync()
+    {
+        if (string.IsNullOrWhiteSpace(message))
+            return;
+
+        await HubClient.SendAsync(Status.UserName, message);
+
+        // Reset input.
+        message = string.Empty;
+
+        // Refocus the input.
+        await messageElement.FocusAsync();
+    }
+}

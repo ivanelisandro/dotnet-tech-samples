@@ -1,0 +1,59 @@
+﻿@rendermode InteractiveServer
+@implements IDisposable
+@using Microsoft.AspNetCore.SignalR.Client
+@using ServerAppSample.Client
+@using ServerAppSample.Models
+
+@if (MessagesState is null || UserState is null)
+{
+    <p>Loading messages…</p>
+    return;
+}
+
+<h3>@UserState?.UserName Chat</h3>
+
+<CascadingValue Value="@userMapping">
+    <ul class="chat-list">
+        @foreach (var message in MessagesState.All)
+        {
+            <MessageView Message="@message" />
+        }
+    </ul>
+</CascadingValue>
+
+@code {
+    private UserMapping userMapping = default!;
+
+    [CascadingParameter]
+    public MessagesState MessagesState { get; set; } = default!;
+
+    [CascadingParameter]
+    public UserState UserState { get; set; } = default!;
+
+    /// <summary>
+    /// Disposes resources when discarding the component.
+    /// </summary>
+    public void Dispose()
+    {
+        UserState.OnChange -= NotifyState;
+        MessagesState.OnChange -= NotifyState;
+    }
+
+    /// <summary>
+    /// Initializes required state management.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        userMapping = new(UserState);
+        UserState.OnChange += NotifyState;
+        MessagesState.OnChange += NotifyState;
+    }
+
+    /// <summary>
+    /// Reports when UI state has changed to be re-rendered.
+    /// </summary>
+    private void NotifyState()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+}

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutingSample", "RoutingSam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsSample", "FormsSample\FormsSample.csproj", "{5C463021-AE59-443B-99B1-FF873A4E7C7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerAppSample", "ServerAppSample\ServerAppSample.csproj", "{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C463021-AE59-443B-99B1-FF873A4E7C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

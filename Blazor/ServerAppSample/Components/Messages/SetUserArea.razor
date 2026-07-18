@@ -1,0 +1,58 @@
+﻿@rendermode InteractiveServer
+@using ServerAppSample.Client
+@using ServerAppSample.Models
+
+<div class="user-area">
+    <input @bind-value="userName"
+           placeholder="Enter your name"
+           disabled="@(UserState?.IsUserActive == true)"
+           @ref="nameElement" />
+    <button class="btn @ActivateCssClass user-area-item"
+            @onclick="Activate"
+            disabled="@(UserState?.IsUserActive == true)">
+        Activate user
+    </button>
+    <button class="btn @ResetCssClass user-area-item"
+            @onclick="Reset"
+            disabled="@(!(UserState?.IsUserActive == true))">
+        Reset user
+    </button>
+</div>
+
+@code {
+    private string userName = default!;
+    private ElementReference nameElement;
+
+    private string? ActivateCssClass => UserState.IsUserActive ?
+        StylesIdentifiers.DisabledClass :
+        StylesIdentifiers.PrimaryClass;
+
+    private string? ResetCssClass => UserState.IsUserActive ?
+        StylesIdentifiers.SecondaryClass :
+        StylesIdentifiers.DisabledClass;
+
+    [CascadingParameter]
+    public UserState UserState { get; set; } = default!;
+
+    /// <summary>
+    /// Activates the user to start using the chat.
+    /// </summary>
+    private void Activate()
+    {
+        UserState.Activate(userName);
+    }
+
+    /// <summary>
+    /// Resets the current user, blocking the chat.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task Reset()
+    {
+        // Reset input.
+        UserState.Reset();
+        userName = string.Empty;
+
+        // Refocus the input.
+        await nameElement.FocusAsync();
+    }
+}

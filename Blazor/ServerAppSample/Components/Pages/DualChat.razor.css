@@ -1,0 +1,21 @@
+﻿/* Dual chat wrapper: two chats side by side */
+.dual-chat-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 90vh; /* wrapper uses part of the total page */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Each chat uses 1 column */
+.chat-column {
+    height: 1000px; /* fixed height */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fafafa;
+    max-width: 30%;
+}

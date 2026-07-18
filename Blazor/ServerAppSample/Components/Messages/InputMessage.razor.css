@@ -1,0 +1,18 @@
+﻿.message-area {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0.5vh 0;
+}
+
+    .message-area input {
+        flex: 1; /* input expands to fill width */
+    }
+
+    .message-area button {
+        flex-shrink: 0; /* button stays fixed size */
+    }
+
+.message-area-item {
+    margin: 0 0 0 0.5vw;
+}
