@@ -1,0 +1,59 @@
+﻿@using HybridRenderingSample.Services
+@inject ILogger<SlowDataComponent> Logger
+@inject MockDataService MockDataService
+
+@if (isLoading)
+{
+    <p role="status" style="padding: 10px 0">Loading data...</p>
+    return;
+}
+
+@if (Items == null || !Items.Any())
+{
+    <p role="status">No data available.</p>
+    return;
+}
+
+<div style="padding: 10px 0">
+    <ul>
+        @foreach (var item in Items)
+        {
+            <li>@item</li>
+        }
+    </ul>
+</div>
+
+@code {
+    private bool isLoading;
+    private IReadOnlyCollection<string>? Items;
+
+    /// <summary>
+    /// Initializes required component states.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    /// <summary>
+    /// Loads data for the component asynchronously.
+    /// </summary>
+    /// <returns>The Task representing the asychronous result.</returns>
+    private async Task LoadDataAsync()
+    {
+        Logger?.LogInformation("Fetching data...");
+
+        isLoading = true;
+
+        try
+        {
+            Items = await MockDataService.GetAll();
+        }
+        finally
+        {
+            isLoading = false;
+            Logger?.LogInformation("Data fetch completed.");
+        }
+    }
+}

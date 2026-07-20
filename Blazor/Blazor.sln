@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsSample", "FormsSample\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerAppSample", "ServerAppSample\ServerAppSample.csproj", "{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HybridRenderingSample", "HybridRenderingSample\HybridRenderingSample\HybridRenderingSample.csproj", "{A318ADE2-89FC-4B31-AB83-ABBE7B4AE0A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HybridRenderingSample.Client", "HybridRenderingSample\HybridRenderingSample.Client\HybridRenderingSample.Client.csproj", "{EABF96A1-D125-4E12-B0BA-FB27BADD292A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C7262FC-C471-47A6-88FD-7F1D3D9C32B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A318ADE2-89FC-4B31-AB83-ABBE7B4AE0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A318ADE2-89FC-4B31-AB83-ABBE7B4AE0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A318ADE2-89FC-4B31-AB83-ABBE7B4AE0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A318ADE2-89FC-4B31-AB83-ABBE7B4AE0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EABF96A1-D125-4E12-B0BA-FB27BADD292A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EABF96A1-D125-4E12-B0BA-FB27BADD292A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABF96A1-D125-4E12-B0BA-FB27BADD292A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EABF96A1-D125-4E12-B0BA-FB27BADD292A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,25 @@
+﻿@page "/slow-data"
+@rendermode InteractiveServer
+
+<PageTitle>Slow Data Loading</PageTitle>
+
+<h3>Server-rendered page: Slow Data Loading</h3>
+
+<button class="btn btn-primary" @onclick="LoadComponent">Load Data Component</button>
+
+@if (ShowSubComponent)
+{
+    <SlowDataComponent />
+}
+
+@code {
+    private bool ShowSubComponent = false;
+
+    /// <summary>
+    /// Sets flag to allow data component to be loaded.
+    /// </summary>
+    private void LoadComponent()
+    {
+        ShowSubComponent = true;
+    }
+}

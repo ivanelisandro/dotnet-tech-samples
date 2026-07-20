@@ -1,0 +1,26 @@
+﻿@using HybridRenderingSample.Services
+@inject TimeService TimeService
+
+<p role="status">Server time: @serverTime</p>
+
+<button class="btn btn-primary" @onclick="UpdateTime">Update Server Time</button>
+
+@code {
+    private DateTime serverTime;
+
+    /// <summary>
+    /// Initializes component states.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        UpdateTime();
+    }
+
+    /// <summary>
+    /// Updates current time from the server.
+    /// </summary>
+    private void UpdateTime()
+    {
+        serverTime = TimeService.GetServerTime();
+    }
+}
