@@ -1,0 +1,33 @@
+@MinimalAPISample_HostAddress = http://localhost:5013
+
+GET {{MinimalAPISample_HostAddress}}/tasks/
+Accept: application/json
+
+###
+
+POST {{MinimalAPISample_HostAddress}}/tasks/
+Accept: application/json
+Content-Type: application/json
+{
+    "id": 1,
+    "name": "Learn .NET Minimal API",
+    "isCompleted": false
+}
+
+###
+
+PUT {{MinimalAPISample_HostAddress}}/tasks/1/
+Accept: application/json
+Content-Type: application/json
+{
+    "id": 1,
+    "name": "Complete .NET Minimal API",
+    "isCompleted": true
+}
+
+###
+
+DELETE {{MinimalAPISample_HostAddress}}/tasks/1/
+Accept: application/json
+
+###
