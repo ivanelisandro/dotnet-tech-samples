@@ -488,5 +488,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Project specific files
 /Databases/CRUDWithMySQL/appsettings.json
 /Databases/EFCoreModelApp/appsettings.json
+/FullStackIntegration/BasicSampleUI/wwwroot/appsettings.json
