@@ -1,6 +1,6 @@
 @BasicSampleAPI_HostAddress = http://localhost:5228
 
-GET {{BasicSampleAPI_HostAddress}}/weatherforecast/
+GET {{BasicSampleAPI_HostAddress}}/products/
 Accept: application/json
 
 ###
