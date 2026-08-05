@@ -1,0 +1,47 @@
+﻿@page "/posts"
+@using ConnectToAPISample.Services
+@inject PostsService PostsService
+
+<PageTitle>Posts</PageTitle>
+<h3>Posts</h3>
+
+@if (posts is null)
+{
+    <p><em>Loading...</em></p>
+    return;
+}
+
+@if (posts.Count() == 0)
+{
+    <p><strong>No posts to show</strong></p>
+    return;
+}
+
+<table>
+    <thead>
+        <tr>
+            <th cl>Post ID</th>
+            <th>Title</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in posts)
+        {
+            <tr>
+                <td class="text-center">@post.Id</td>
+                <td>@post.Title</td>
+                <td>@post.Body</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IEnumerable<Post>? posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        posts = await PostsService.GetAll();
+    }
+}

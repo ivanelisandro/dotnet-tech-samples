@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.37411.7 d17.14
+VisualStudioVersion = 17.14.37411.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSampleAPI", "BasicSampleAPI\BasicSampleAPI.csproj", "{47D600A9-9BEA-4BAE-A7EA-49FB50378AC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicSampleUI", "BasicSampleUI\BasicSampleUI.csproj", "{CC22E64D-0F6E-4271-AF7B-BC13D64FA867}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalAPISample", "MinimalAPISample\MinimalAPISample.csproj", "{26580D8D-2B91-4DC5-96DB-C63574E7297C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectToAPISample", "ConnectToAPISample\ConnectToAPISample.csproj", "{9C127E30-F5CB-4705-B66A-F29FE1BD4FD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{26580D8D-2B91-4DC5-96DB-C63574E7297C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26580D8D-2B91-4DC5-96DB-C63574E7297C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26580D8D-2B91-4DC5-96DB-C63574E7297C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C127E30-F5CB-4705-B66A-F29FE1BD4FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C127E30-F5CB-4705-B66A-F29FE1BD4FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C127E30-F5CB-4705-B66A-F29FE1BD4FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C127E30-F5CB-4705-B66A-F29FE1BD4FD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
