@@ -1,0 +1,45 @@
+﻿@page "/weather"
+@using ConnectToAPISample2.Models
+@using ConnectToAPISample2.Services
+@inject WeatherService WeatherService
+
+<PageTitle>Weather</PageTitle>
+<h3>Weather Information</h3>
+
+@if (isLoading)
+{
+    <p><em>Loading weather data...</em></p>
+    return;
+}
+
+@if (weather is null)
+{
+    <p><em>Unable to fetch weather data. Please try again later.</em></p>
+    return;
+}
+
+
+<div>
+    <h4>@weather.Location.Name, @weather.Location.Country</h4>
+    <p>Temperature: @weather.Current.Temp_C °C</p>
+    <p>Condition: @weather.Current.Condition.Text</p>
+    <img src="https:@weather.Current.Condition.Icon" alt="Weather Condition" />
+</div>
+
+@code {
+    private LocalWeather? weather;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        try
+        {
+            weather = await WeatherService.Get(AvailableCities.SaoPaulo);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}
