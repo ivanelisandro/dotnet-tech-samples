@@ -493,3 +493,4 @@ $RECYCLE.BIN/
 /Databases/CRUDWithMySQL/appsettings.json
 /Databases/EFCoreModelApp/appsettings.json
 /FullStackIntegration/BasicSampleUI/wwwroot/appsettings.json
+/FullStackIntegration/ConnectToAPISample2/wwwroot/appsettings.json
