@@ -6,7 +6,7 @@ To use this API it is necessary to:
 
 1. Access https://www.weatherapi.com/
 2. Register for free or login to your account
-3. Generate you API key
+3. Generate your API key
 
 Local configuration is not commited with the source code. Some configuration is required before running this project if cloning from scratch.
 
@@ -21,7 +21,7 @@ Configuration must be provided through a file that the browser can download.
 ### Add configuration to `wwwroot/appsettings.json`
 
 - Create the file: `wwwroot/appsettings.json`
-- Add configuration to connect to the API:
+- Add configuration to connect to the API (place your API key where it is indicated):
 
     ```json
     {
