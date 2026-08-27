@@ -1,5 +1,6 @@
 using ConnectToAPISample2;
 using ConnectToAPISample2.Options;
+using ConnectToAPISample2.Users.Services;
 using ConnectToAPISample2.Weather.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -19,5 +20,9 @@ builder.Services.AddScoped(
 // Sets up service to handle the weather data.
 builder.Services.AddScoped<WeatherService>();
 builder.Services.AddScoped<WeatherStateService>();
+
+// Sets up service to handle the users data.
+builder.Services.AddScoped<UsersService>();
+builder.Services.AddScoped<UsersStateService>();
 
 await builder.Build().RunAsync();

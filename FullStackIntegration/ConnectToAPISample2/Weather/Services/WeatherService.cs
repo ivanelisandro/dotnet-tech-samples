@@ -26,7 +26,7 @@ public class WeatherService(HttpClient client, IOptions<ApiOptions> options)
         LocalWeather? weather = null;
         string city = selectedCity.DisplayName();
 
-        // Cancel previous requests.
+        // Cancel previous request.
         cancellationSource?.Cancel();
         cancellationSource = new CancellationTokenSource();
 

@@ -1,0 +1,101 @@
+﻿@page "/users"
+@using ConnectToAPISample2.Users.Services
+@inject UsersStateService UsersState
+
+<PageTitle>Users</PageTitle>
+<h3>Users Details</h3>
+
+<button class="btn btn-primary" @onclick="UpdateUsersAsync">Reload Users</button>
+
+@if (isLoading)
+{
+    <p><em>Loading users...</em></p>
+    return;
+}
+
+@if (UsersState.Users is null)
+{
+    <p><em>Unable to fetch users. Please try again later.</em></p>
+    return;
+}
+
+@if (UsersState.Users.Count() == 0)
+{
+    <p><strong>No users to show</strong></p>
+    return;
+}
+
+<table>
+    <thead>
+        <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in UsersState.Users)
+        {
+            <tr>
+                <td class="text-center">@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    <ul>
+                        <li><strong>City:</strong> @user.Address.City</li>
+                        <li><strong>Street:</strong> @user.Address.Street</li>
+                        <li><strong>Suite:</strong> @user.Address.Suite</li>
+                        <li><strong>ZIP Code:</strong> @user.Address.Zipcode</li>
+                    </ul>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private bool isLoading = true;
+
+    /// <summary>
+    /// Disposes existent resources.
+    /// </summary>
+    public void Dispose()
+    {
+        UsersState.OnChange -= StateHasChanged;
+    }
+
+    /// <summary>
+    /// Sets required state monitoring during initialization.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        UsersState.OnChange += StateHasChanged;
+    }
+
+    /// <summary>
+    /// Starts required state management asynchronously.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateUsersAsync();
+    }
+
+    /// <summary>
+    /// Updates user data state asynchronously.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
+    private async Task UpdateUsersAsync()
+    {
+        isLoading = true;
+        try
+        {
+            await UsersState.UpdateAsync();
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}
