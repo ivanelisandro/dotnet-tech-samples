@@ -1,0 +1,60 @@
+﻿table{
+    margin: 20px 0;
+}
+
+th {
+    white-space: nowrap;
+    background-color: #1a365d;
+    color: #ffffff;
+    vertical-align: central;
+    padding: 0px 10px;
+}
+
+td {
+    vertical-align: central;
+    padding: 20px 10px;
+}
+
+/* Set properties for every even row */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Set properties for every odd row */
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+ul {
+    list-style-type: none; /* Removes bullets */
+}
+
+/* ------------------------------------------------------ */
+/*               Loading spinner styles                   */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* ------------------------------------------------------ */

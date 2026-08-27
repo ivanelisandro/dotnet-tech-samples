@@ -1,0 +1,78 @@
+﻿@page "/users"
+@using AsyncAPISample.Services
+@inject UsersService UsersService
+
+<PageTitle>Users</PageTitle>
+<h3>Users Details</h3>
+
+@if (isLoading)
+{
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p><em>Loading users...</em></p>
+    </div>
+    return;
+}
+
+@if (users is null)
+{
+    <p><em>Unable to fetch users. Please try again later.</em></p>
+    return;
+}
+
+@if (users.Count() == 0)
+{
+    <p><strong>No users to show</strong></p>
+    return;
+}
+
+<table>
+    <thead>
+        <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            <tr>
+                <td class="text-center">@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    <ul>
+                        <li><strong>City:</strong> @user.Address.City</li>
+                        <li><strong>Street:</strong> @user.Address.Street</li>
+                        <li><strong>Suite:</strong> @user.Address.Suite</li>
+                        <li><strong>ZIP Code:</strong> @user.Address.Zipcode</li>
+                    </ul>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private bool isLoading = true;
+    private IEnumerable<User>? users;
+
+    /// <summary>
+    /// Starts required data loading asynchronously.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        try
+        {
+            users = await UsersService.GetAll();
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

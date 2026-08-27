@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectToAPISample", "Conne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectToAPISample2", "ConnectToAPISample2\ConnectToAPISample2.csproj", "{D4376482-4251-4A75-8834-3379224AC6E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAPISample", "AsyncAPISample\AsyncAPISample.csproj", "{39786641-B6B1-4DC0-A5F2-61884651FD88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D4376482-4251-4A75-8834-3379224AC6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4376482-4251-4A75-8834-3379224AC6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4376482-4251-4A75-8834-3379224AC6E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39786641-B6B1-4DC0-A5F2-61884651FD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39786641-B6B1-4DC0-A5F2-61884651FD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39786641-B6B1-4DC0-A5F2-61884651FD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39786641-B6B1-4DC0-A5F2-61884651FD88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
