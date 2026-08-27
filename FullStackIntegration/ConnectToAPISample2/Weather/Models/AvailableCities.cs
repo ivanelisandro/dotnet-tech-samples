@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConnectToAPISample2.Models;
+namespace ConnectToAPISample2.Weather.Models;
 
 /// <summary>
 /// A short list of cities with display names that I can use both for UI and in the query to retrieve info.

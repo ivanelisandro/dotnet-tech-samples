@@ -1,6 +1,6 @@
 using ConnectToAPISample2;
 using ConnectToAPISample2.Options;
-using ConnectToAPISample2.Services;
+using ConnectToAPISample2.Weather.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -16,7 +16,8 @@ builder.Services.Configure<ApiOptions>(
 builder.Services.AddScoped(
     provider => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-// Sets up our service to handle the weather data retrieval.
+// Sets up service to handle the weather data.
 builder.Services.AddScoped<WeatherService>();
+builder.Services.AddScoped<WeatherStateService>();
 
 await builder.Build().RunAsync();

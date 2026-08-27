@@ -1,4 +1,4 @@
-﻿namespace ConnectToAPISample2.Models;
+﻿namespace ConnectToAPISample2.Weather.Models;
 
 /// <summary>
 /// Represents the overall conditions of the weather.

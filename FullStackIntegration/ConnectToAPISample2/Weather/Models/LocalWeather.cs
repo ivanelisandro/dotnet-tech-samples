@@ -1,4 +1,4 @@
-﻿namespace ConnectToAPISample2.Models;
+﻿namespace ConnectToAPISample2.Weather.Models;
 
 /// <summary>
 /// Represents local weather information for a place in the world.

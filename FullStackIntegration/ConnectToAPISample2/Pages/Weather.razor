@@ -1,10 +1,26 @@
 ﻿@page "/weather"
-@using ConnectToAPISample2.Models
-@using ConnectToAPISample2.Services
+@using ConnectToAPISample2
+@using ConnectToAPISample2.Weather.Services
+@using ConnectToAPISample2.Weather.Models
 @inject WeatherService WeatherService
+@inject WeatherStateService WeatherState
 
 <PageTitle>Weather</PageTitle>
 <h3>Weather Information</h3>
+
+<div class="form-group col-md-4 margin-box">
+    <label for="citySelect" class="select-box">Select City:</label>
+
+    <InputSelect id="citySelect"
+                 class="form-control"
+                 @bind-Value="SelectedCity"
+                 @bind-Value:after="OnCityChangedAsync">
+        @foreach (AvailableCities city in Enum.GetValues(typeof(AvailableCities)))
+        {
+            <option value="@city">@city.DisplayName()</option>
+        }
+    </InputSelect>
+</div>
 
 @if (isLoading)
 {
@@ -12,30 +28,70 @@
     return;
 }
 
-@if (weather is null)
+@if (WeatherState.Weather is null)
 {
     <p><em>Unable to fetch weather data. Please try again later.</em></p>
     return;
 }
 
-
 <div>
-    <h4>@weather.Location.Name, @weather.Location.Country</h4>
-    <p>Temperature: @weather.Current.Temp_C °C</p>
-    <p>Condition: @weather.Current.Condition.Text</p>
-    <img src="https:@weather.Current.Condition.Icon" alt="Weather Condition" />
+    <h4>@WeatherState.Weather.Location.Name, @WeatherState.Weather.Location.Country</h4>
+    <p>Temperature: @WeatherState.Weather.Current.Temp_C °C</p>
+    <p>Condition: @WeatherState.Weather.Current.Condition.Text</p>
+    <img src="https:@WeatherState.Weather.Current.Condition.Icon" alt="Weather Condition" />
 </div>
 
 @code {
-    private LocalWeather? weather;
     private bool isLoading = true;
 
+    private AvailableCities SelectedCity { get; set; } = AvailableCities.SaoPaulo;
+
+    /// <summary>
+    /// Disposes existent resources.
+    /// </summary>
+    public void Dispose()
+    {
+        WeatherState.OnChange -= StateHasChanged;
+    }
+
+    /// <summary>
+    /// Sets required state monitoring during initialization.
+    /// </summary>
+    protected override void OnInitialized()
+    {
+        WeatherState.OnChange += StateHasChanged;
+    }
+
+    /// <summary>
+    /// Starts required state management initialization asynchronously.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
     protected override async Task OnInitializedAsync()
     {
+        await UpdateWeatherAsync();
+    }
+
+    /// <summary>
+    /// Handles operations when the <see cref="SelectedCity" /> changes.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
+    private async Task OnCityChangedAsync()
+    {
+        await UpdateWeatherAsync();
+    }
+
+    /// <summary>
+    /// Updates weather data state asynchronously.
+    /// </summary>
+    /// <returns>The Task containing the result of the asynchronous operation.</returns>
+    private async Task UpdateWeatherAsync()
+    {
         isLoading = true;
+        StateHasChanged();
+
         try
         {
-            weather = await WeatherService.Get(AvailableCities.SaoPaulo);
+            await WeatherState.UpdateAsync(SelectedCity);
         }
         finally
         {
