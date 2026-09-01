@@ -1,0 +1,34 @@
+﻿@page "/theme"
+@using Microsoft.JSInterop
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>Theme</PageTitle>
+
+<h3>Theme Selector</h3>
+
+<button class="btn btn-primary" @onclick="ToggleTheme">Toggle Theme</button>
+<p>Current Theme: @selectedTheme</p>
+
+
+@code {
+    private const string ThemeKey = "user-theme";
+    private const string LightTheme = "light";
+    private const string DarkTheme = "dark";
+
+    private string selectedTheme = LightTheme;
+
+    protected override void OnInitialized()
+    {
+        selectedTheme = LocalStorage.GetItem<string>(ThemeKey) ?? LightTheme;
+    }
+
+    /// <summary>
+    /// Changes the text of the selected theme.
+    /// Just a demo of how to save this information in the Local Storage.
+    /// </summary>
+    private void ToggleTheme()
+    {
+        selectedTheme = selectedTheme == LightTheme ? DarkTheme : LightTheme;
+        LocalStorage.SetItem(ThemeKey, selectedTheme);
+    }
+}

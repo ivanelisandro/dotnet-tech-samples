@@ -1,0 +1,40 @@
+﻿@page "/cart"
+@using Microsoft.JSInterop
+@inject ISessionStorageService SessionStorage
+
+<PageTitle>Cart</PageTitle>
+
+<h3>Shopping Cart</h3>
+
+<input class="input-group-text" @bind="newItem" placeholder="Add item" />
+
+<button class="btn btn-primary" style="margin: 10px 0" @onclick="AddItem">Add</button>
+
+<ul class="list-group">
+    @foreach (var item in cartItems)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+    private const string CartKey = "cart";
+    private string newItem = string.Empty;
+    private List<string> cartItems = [];
+
+    protected override void OnInitialized()
+    {
+        cartItems = SessionStorage.GetItem<List<string>>(CartKey) ?? [];
+    }
+
+    /// <summary>
+    /// Adds an item from the input to the current list.
+    /// Just a demo of how to save this information in the Session Storage.
+    /// </summary>
+    private void AddItem()
+    {
+        cartItems.Add(newItem);
+        SessionStorage.SetItem(CartKey, cartItems);
+        newItem = string.Empty;
+    }
+}
